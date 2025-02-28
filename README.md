@@ -8,11 +8,29 @@ The LLMsTXT format is a standardized way to provide information to help LLMs use
 
 ## Installation
 
-### Option 1: Install with go install (Recommended)
+### Option 1: Install with go install
+
+#### From GitHub (Requires public repository)
 
 ```bash
 # Install the latest version
 go install github.com/basemachina/llmstxt-gen@latest
+
+# The binary will be installed to your $GOPATH/bin directory
+# Make sure $GOPATH/bin is in your PATH
+```
+
+> **Note**: If you encounter a "404 Not Found" error, it means the repository is private. Use the local installation method below.
+
+#### From local repository (Recommended)
+
+```bash
+# Clone the repository
+git clone git@github.com:basemachina/llmstxt-gen.git
+cd llmstxt-gen
+
+# Install the tool
+go install .
 
 # The binary will be installed to your $GOPATH/bin directory
 # Make sure $GOPATH/bin is in your PATH
