@@ -1,3 +1,3 @@
-module github.com/basemachina/llmstxt-gen
+module github.com/timakin/llmstxt-gen
 
 go 1.21

@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/basemachina/llmstxt-gen/internal/parser"
+	"github.com/timakin/llmstxt-gen/internal/parser"
 )
 
 func TestFormatLLMsTXT(t *testing.T) {

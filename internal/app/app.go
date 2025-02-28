@@ -8,9 +8,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/basemachina/llmstxt-gen/internal/formatter"
-	"github.com/basemachina/llmstxt-gen/internal/parser"
-	"github.com/basemachina/llmstxt-gen/internal/transformer"
+	"github.com/timakin/llmstxt-gen/internal/formatter"
+	"github.com/timakin/llmstxt-gen/internal/parser"
+	"github.com/timakin/llmstxt-gen/internal/transformer"
 )
 
 var (

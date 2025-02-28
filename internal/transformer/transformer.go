@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/basemachina/llmstxt-gen/internal/parser"
+	"github.com/timakin/llmstxt-gen/internal/parser"
 )
 
 // TransformContent transforms the parsed MDX content into plain Markdown

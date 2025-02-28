@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/basemachina/llmstxt-gen/internal/parser"
+	"github.com/timakin/llmstxt-gen/internal/parser"
 )
 
 // FormatOptions contains options for formatting the LLMsTXT output

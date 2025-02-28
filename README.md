@@ -14,7 +14,7 @@ The LLMsTXT format is a standardized way to provide information to help LLMs use
 
 ```bash
 # Install the latest version
-go install github.com/basemachina/llmstxt-gen@latest
+go install github.com/timakin/llmstxt-gen@latest
 
 # The binary will be installed to your $GOPATH/bin directory
 # Make sure $GOPATH/bin is in your PATH
@@ -26,7 +26,7 @@ go install github.com/basemachina/llmstxt-gen@latest
 
 ```bash
 # Clone the repository
-git clone git@github.com:basemachina/llmstxt-gen.git
+git clone git@github.com:timakin/llmstxt-gen.git
 cd llmstxt-gen
 
 # Install the tool
@@ -40,7 +40,7 @@ go install .
 
 ```bash
 # Clone the repository
-git clone https://github.com/basemachina/llmstxt-gen.git
+git clone https://github.com/timakin/llmstxt-gen.git
 cd llmstxt-gen
 
 # Build the tool
