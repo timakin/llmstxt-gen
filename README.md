@@ -8,9 +8,23 @@ The LLMsTXT format is a standardized way to provide information to help LLMs use
 
 ## Installation
 
-### Option 1: Install with go install
+### Option 1: Download pre-built binaries (Recommended)
 
-#### From GitHub (Requires public repository)
+Download the pre-built binaries from the [Releases](https://github.com/timakin/llmstxt-gen/releases) page.
+
+### Option 2: Install with Homebrew (macOS and Linux)
+
+```bash
+# Add the tap
+brew tap timakin/tap
+
+# Install the tool
+brew install llmstxt-gen
+```
+
+### Option 3: Install with go install
+
+#### From GitHub
 
 ```bash
 # Install the latest version
@@ -20,9 +34,7 @@ go install github.com/timakin/llmstxt-gen@latest
 # Make sure $GOPATH/bin is in your PATH
 ```
 
-> **Note**: If you encounter a "404 Not Found" error, it means the repository is private. Use the local installation method below.
-
-#### From local repository (Recommended)
+#### From local repository
 
 ```bash
 # Clone the repository
@@ -36,7 +48,7 @@ go install .
 # Make sure $GOPATH/bin is in your PATH
 ```
 
-### Option 2: Clone and Build
+### Option 4: Clone and Build
 
 ```bash
 # Clone the repository
@@ -119,6 +131,30 @@ The LLMsTXT format includes:
 4. Sections delimited by H2 headers containing "file lists" of URLs where further detail is available
 
 For more information about the LLMsTXT format, see [llmstxt.org](https://llmstxt.org/).
+
+## Release Process
+
+This project uses [GoReleaser](https://goreleaser.com/) to automate the release process. Here's how to create a new release:
+
+1. Make sure all your changes are committed and pushed to the repository.
+2. Create and push a new tag with the version number:
+   ```bash
+   git tag -a v0.1.0 -m "First release"
+   git push origin v0.1.0
+   ```
+3. The GitHub Actions workflow will automatically build and publish the release.
+
+You can also test the release process locally without publishing:
+
+```bash
+# Install GoReleaser if you haven't already
+go install github.com/goreleaser/goreleaser@latest
+
+# Test the release process (dry run)
+goreleaser release --snapshot --clean --skip-publish
+```
+
+This will create a release in the `dist/` directory without publishing it to GitHub.
 
 ## License
 

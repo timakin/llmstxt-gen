@@ -19,6 +19,7 @@ var (
 	rootDir     = flag.String("root-dir", "pages", "Root directory name for relative path calculation")
 	projectName = flag.String("project-name", "Documentation", "Project name for the LLMsTXT output")
 	verbose     = flag.Bool("verbose", false, "Enable verbose logging")
+	// Note: The version flag is handled in main.go
 )
 
 // Run executes the llmstxt-gen tool with the provided command-line arguments
