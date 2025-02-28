@@ -40,21 +40,12 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-# Path to the llmstxt-gen package
-LLMSTXT_GEN_PATH="../llmstxt-gen"
-
-# Build the tool if it doesn't exist
-if [ ! -f "$LLMSTXT_GEN_PATH/llmstxt-gen" ]; then
-  echo "Building llmstxt-gen tool..."
-  (cd "$LLMSTXT_GEN_PATH" && go build -o llmstxt-gen ./cmd/llmstxt-gen)
-fi
-
 # Run the tool
 echo "Generating llms.txt..."
 if [ "$VERBOSE" = true ]; then
-  "$LLMSTXT_GEN_PATH/llmstxt-gen" --input-dir "$INPUT_DIR" --output-file "$OUTPUT_FILE" --root-dir "$ROOT_DIR" --project-name "$PROJECT_NAME" --verbose
+  llmstxt-gen --input-dir "$INPUT_DIR" --output-file "$OUTPUT_FILE" --root-dir "$ROOT_DIR" --project-name "$PROJECT_NAME" --verbose
 else
-  "$LLMSTXT_GEN_PATH/llmstxt-gen" --input-dir "$INPUT_DIR" --output-file "$OUTPUT_FILE" --root-dir "$ROOT_DIR" --project-name "$PROJECT_NAME"
+  llmstxt-gen --input-dir "$INPUT_DIR" --output-file "$OUTPUT_FILE" --root-dir "$ROOT_DIR" --project-name "$PROJECT_NAME"
 fi
 
 # Check if the generation was successful

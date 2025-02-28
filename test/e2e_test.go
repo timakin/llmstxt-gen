@@ -24,7 +24,7 @@ func TestE2E(t *testing.T) {
 	rootDir = filepath.Dir(rootDir) // Assuming test is run from the test directory
 
 	// Build the tool
-	buildCmd := exec.Command("go", "build", "-o", "llmstxt-gen", "./cmd/llmstxt-gen")
+	buildCmd := exec.Command("go", "build", "-o", "llmstxt-gen", ".")
 	buildCmd.Dir = rootDir
 	buildOutput, err := buildCmd.CombinedOutput()
 	if err != nil {

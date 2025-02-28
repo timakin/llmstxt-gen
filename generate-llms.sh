@@ -42,7 +42,7 @@ done
 # Build the tool if it doesn't exist
 if [ ! -f "./llmstxt-gen" ]; then
   echo "Building llmstxt-gen tool..."
-  go build -o llmstxt-gen ./cmd/llmstxt-gen
+  go build -o llmstxt-gen
 fi
 
 # Run the tool

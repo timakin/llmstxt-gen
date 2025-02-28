@@ -1,4 +1,5 @@
-package main
+// Package app provides the core functionality of the llmstxt-gen tool
+package app
 
 import (
 	"flag"
@@ -20,7 +21,8 @@ var (
 	verbose     = flag.Bool("verbose", false, "Enable verbose logging")
 )
 
-func main() {
+// Run executes the llmstxt-gen tool with the provided command-line arguments
+func Run() {
 	flag.Parse()
 
 	// Validate input directory

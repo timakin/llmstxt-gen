@@ -12,7 +12,7 @@ The LLMsTXT format is a standardized way to provide information to help LLMs use
 
 ```bash
 # Install the latest version
-go install github.com/basemachina/llmstxt-gen/cmd/llmstxt-gen@latest
+go install github.com/basemachina/llmstxt-gen@latest
 
 # The binary will be installed to your $GOPATH/bin directory
 # Make sure $GOPATH/bin is in your PATH
@@ -26,7 +26,7 @@ git clone https://github.com/basemachina/llmstxt-gen.git
 cd llmstxt-gen
 
 # Build the tool
-go build -o llmstxt-gen ./cmd/llmstxt-gen
+go build -o llmstxt-gen
 ```
 
 ## Usage
