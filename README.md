@@ -14,6 +14,8 @@ Download the pre-built binaries from the [Releases](https://github.com/timakin/l
 
 ### Option 2: Install with Homebrew (macOS and Linux)
 
+> **Note**: This option is only available if the Homebrew tap has been set up by the repository owner.
+
 ```bash
 # Add the tap
 brew tap timakin/tap
@@ -151,10 +153,24 @@ You can also test the release process locally without publishing:
 go install github.com/goreleaser/goreleaser@latest
 
 # Test the release process (dry run)
-goreleaser release --snapshot --clean --skip-publish
+goreleaser release --snapshot --clean --skip=publish
 ```
 
 This will create a release in the `dist/` directory without publishing it to GitHub.
+
+### Setting Up Homebrew Tap (Optional)
+
+If you want to enable Homebrew formula generation, you need to:
+
+1. Create a new repository at `github.com/timakin/homebrew-tap`
+2. Uncomment the `HOMEBREW_TAP` environment variable in `.github/workflows/release.yml`:
+   ```yaml
+   env:
+     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     HOMEBREW_TAP: "true"
+   ```
+
+This will generate a Homebrew formula during the release process and push it to your tap repository, allowing users to install your tool with Homebrew.
 
 ## License
 

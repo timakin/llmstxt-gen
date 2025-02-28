@@ -61,6 +61,9 @@ changelog:
       - Merge pull request
       - Merge branch
 
+# Homebrew tap formula generation is optional
+# To enable it, set the HOMEBREW_TAP environment variable to "true"
+# and create the repository at github.com/timakin/homebrew-tap
 brews:
   - name: llmstxt-gen
     homepage: "https://github.com/timakin/llmstxt-gen"
@@ -74,6 +77,7 @@ brews:
       bin.install "llmstxt-gen"
     test: |
       system "#{bin}/llmstxt-gen", "--help"
+    skip_upload: auto # Skip if the repository doesn't exist
 
 # The lines beneath this are called `modelines`. See `:help modeline`
 # yaml-language-server: $schema=https://goreleaser.com/static/schema.json

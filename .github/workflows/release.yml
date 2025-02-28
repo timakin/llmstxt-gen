@@ -35,3 +35,6 @@ jobs:
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Uncomment the line below and create the repository at github.com/timakin/homebrew-tap
+          # to enable Homebrew tap formula generation
+          # HOMEBREW_TAP: "true"
