@@ -12,19 +12,7 @@ The LLMsTXT format is a standardized way to provide information to help LLMs use
 
 Download the pre-built binaries from the [Releases](https://github.com/timakin/llmstxt-gen/releases) page.
 
-### Option 2: Install with Homebrew (macOS and Linux)
-
-> **Note**: This option is only available if the Homebrew tap has been set up by the repository owner.
-
-```bash
-# Add the tap
-brew tap timakin/tap
-
-# Install the tool
-brew install llmstxt-gen
-```
-
-### Option 3: Install with go install
+### Option 2: Install with go install
 
 #### From GitHub
 
@@ -50,7 +38,7 @@ go install .
 # Make sure $GOPATH/bin is in your PATH
 ```
 
-### Option 4: Clone and Build
+### Option 3: Clone and Build
 
 ```bash
 # Clone the repository
@@ -158,19 +146,6 @@ goreleaser release --snapshot --clean --skip=publish
 
 This will create a release in the `dist/` directory without publishing it to GitHub.
 
-### Setting Up Homebrew Tap (Optional)
-
-If you want to enable Homebrew formula generation, you need to:
-
-1. Create a new repository at `github.com/timakin/homebrew-tap`
-2. Uncomment the `HOMEBREW_TAP` environment variable in `.github/workflows/release.yml`:
-   ```yaml
-   env:
-     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-     HOMEBREW_TAP: "true"
-   ```
-
-This will generate a Homebrew formula during the release process and push it to your tap repository, allowing users to install your tool with Homebrew.
 
 ## License
 
