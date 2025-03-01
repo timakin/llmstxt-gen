@@ -1,5 +1,6 @@
 # This is an example .goreleaser.yml file with some sensible defaults.
 # Make sure to check the documentation at https://goreleaser.com
+version: 2
 before:
   hooks:
     # You may remove this if you don't use go modules.
@@ -24,9 +25,8 @@ builds:
       - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
     main: .
     binary: llmstxt-gen
-
 archives:
-  - format: tar.gz
+  - # デフォルトはtar.gzなので明示的な指定は不要
     # this name template makes the OS and Arch compatible with the results of uname.
     name_template: >-
       {{ .ProjectName }}_
@@ -42,6 +42,7 @@ archives:
     files:
       - README.md
       - LICENSE*
+      - generate-llms.sh
       - generate-llms.sh
 
 checksum:
@@ -60,24 +61,6 @@ changelog:
       - '^chore:'
       - Merge pull request
       - Merge branch
-
-# Homebrew tap formula generation is optional
-# To enable it, set the HOMEBREW_TAP environment variable to "true"
-# and create the repository at github.com/timakin/homebrew-tap
-brews:
-  - name: llmstxt-gen
-    homepage: "https://github.com/timakin/llmstxt-gen"
-    description: "MDX to LLMsTXT Converter for making documentation more accessible to LLMs"
-    license: "MIT"
-    repository:
-      owner: timakin
-      name: homebrew-tap
-    directory: Formula
-    install: |
-      bin.install "llmstxt-gen"
-    test: |
-      system "#{bin}/llmstxt-gen", "--help"
-    skip_upload: auto # Skip if the repository doesn't exist
 
 # The lines beneath this are called `modelines`. See `:help modeline`
 # yaml-language-server: $schema=https://goreleaser.com/static/schema.json
