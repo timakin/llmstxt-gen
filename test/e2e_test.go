@@ -11,11 +11,6 @@ import (
 // TestE2E is an end-to-end test that runs the llmstxt-gen command on test data
 // and verifies the output matches the expected result.
 func TestE2E(t *testing.T) {
-	// Skip if running in CI environment
-	if os.Getenv("CI") == "true" {
-		t.Skip("Skipping E2E test in CI environment")
-	}
-
 	// Get the project root directory
 	rootDir, err := os.Getwd()
 	if err != nil {
@@ -23,12 +18,19 @@ func TestE2E(t *testing.T) {
 	}
 	rootDir = filepath.Dir(rootDir) // Assuming test is run from the test directory
 
-	// Build the tool
-	buildCmd := exec.Command("go", "build", "-o", "llmstxt-gen", ".")
-	buildCmd.Dir = rootDir
-	buildOutput, err := buildCmd.CombinedOutput()
-	if err != nil {
-		t.Fatalf("Failed to build tool: %v\nOutput: %s", err, buildOutput)
+	var binaryPath string
+	if os.Getenv("CI") == "true" {
+		// In CI, assume the binary is already built and available
+		binaryPath = filepath.Join(rootDir, "llmstxt-gen")
+	} else {
+		// Build the tool locally
+		buildCmd := exec.Command("go", "build", "-o", "llmstxt-gen", ".")
+		buildCmd.Dir = rootDir
+		buildOutput, err := buildCmd.CombinedOutput()
+		if err != nil {
+			t.Fatalf("Failed to build tool: %v\nOutput: %s", err, buildOutput)
+		}
+		binaryPath = filepath.Join(rootDir, "llmstxt-gen")
 	}
 
 	// Create a temporary output file
@@ -38,7 +40,7 @@ func TestE2E(t *testing.T) {
 	// Run the tool
 	testdataDir := filepath.Join(rootDir, "testdata", "pages")
 	cmd := exec.Command(
-		filepath.Join(rootDir, "llmstxt-gen"),
+		binaryPath,
 		"--input-dir", testdataDir,
 		"--output-file", outputFile,
 		"--root-dir", "pages",
@@ -92,17 +94,27 @@ func TestE2E(t *testing.T) {
 
 // TestE2EWithOptions tests the tool with different command-line options
 func TestE2EWithOptions(t *testing.T) {
-	// Skip if running in CI environment
-	if os.Getenv("CI") == "true" {
-		t.Skip("Skipping E2E test in CI environment")
-	}
-
 	// Get the project root directory
 	rootDir, err := os.Getwd()
 	if err != nil {
 		t.Fatalf("Failed to get current directory: %v", err)
 	}
 	rootDir = filepath.Dir(rootDir) // Assuming test is run from the test directory
+
+	var binaryPath string
+	if os.Getenv("CI") == "true" {
+		// In CI, assume the binary is already built and available
+		binaryPath = filepath.Join(rootDir, "llmstxt-gen")
+	} else {
+		// Build the tool locally
+		buildCmd := exec.Command("go", "build", "-o", "llmstxt-gen", ".")
+		buildCmd.Dir = rootDir
+		buildOutput, err := buildCmd.CombinedOutput()
+		if err != nil {
+			t.Fatalf("Failed to build tool: %v\nOutput: %s", err, buildOutput)
+		}
+		binaryPath = filepath.Join(rootDir, "llmstxt-gen")
+	}
 
 	// Create a temporary output file
 	outputFile := filepath.Join(rootDir, "test_output_options.txt")
@@ -111,7 +123,7 @@ func TestE2EWithOptions(t *testing.T) {
 	// Run the tool with verbose option
 	testdataDir := filepath.Join(rootDir, "testdata", "pages")
 	cmd := exec.Command(
-		filepath.Join(rootDir, "llmstxt-gen"),
+		binaryPath,
 		"--input-dir", testdataDir,
 		"--output-file", outputFile,
 		"--root-dir", "pages",

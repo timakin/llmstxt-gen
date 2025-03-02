@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '**'  # すべてのブランチでプッシュ時に実行
+  pull_request:
+    branches:
+      - '**'  # すべてのブランチへのプルリクエスト時に実行
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '>=1.21'
+          cache: true
+      
+      - name: Build
+        run: go build -o llmstxt-gen .
+      
+      - name: Run tests
+        run: go test -v ./...
+        env:
+          CI: "true"

@@ -1,5 +1,8 @@
 # llmstxt-gen: MDX to LLMsTXT Converter
 
+[![CI](https://github.com/basemachina/llmstxt-gen/actions/workflows/ci.yml/badge.svg)](https://github.com/basemachina/llmstxt-gen/actions/workflows/ci.yml)
+[![Release](https://github.com/basemachina/llmstxt-gen/actions/workflows/release.yml/badge.svg)](https://github.com/basemachina/llmstxt-gen/actions/workflows/release.yml)
+
 This tool converts documentation from MDX format to the LLMsTXT format, which is designed to make documentation more accessible to Large Language Models (LLMs).
 
 ## Overview
