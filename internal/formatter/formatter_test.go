@@ -3,28 +3,26 @@ package formatter
 import (
 	"strings"
 	"testing"
-
-	"github.com/timakin/llmstxt-gen/internal/parser"
 )
 
 func TestFormatLLMsTXT(t *testing.T) {
 	// Create test data
-	contents := []parser.ParsedContent{
+	contents := []ExtractedContent{
 		{
-			FilePath:     "section1/test.mdx",
-			Title:        "Test Document",
-			Summary:      "This is a test document",
-			Content:      "# Test Document\n\nThis is the content of the test document.",
-			RelativePath: "section1/test.mdx",
-			Section:      "section1",
+			FilePath:    "section1/test.mdx",
+			Title:       "Test Document",
+			TextContent: "# Test Document\n\nThis is the content of the test document.", // Use TextContent
+			URL:         "/section1/test",                                               // Use URL, assume it's generated
+			Excerpt:     "This is a test document",                                      // Use Excerpt
+			Section:     "section1",
 		},
 		{
-			FilePath:     "section2/another-test.mdx",
-			Title:        "Another Test Document",
-			Summary:      "This is another test document",
-			Content:      "# Another Test Document\n\nThis is the content of another test document.",
-			RelativePath: "section2/another-test.mdx",
-			Section:      "section2",
+			FilePath:    "section2/another-test.mdx",
+			Title:       "Another Test Document",
+			TextContent: "# Another Test Document\n\nThis is the content of another test document.", // Use TextContent
+			URL:         "/section2/another-test",                                                   // Use URL
+			Excerpt:     "This is another test document",                                            // Use Excerpt
+			Section:     "section2",
 		},
 	}
 
@@ -68,14 +66,14 @@ func TestFormatLLMsTXT(t *testing.T) {
 
 func TestFormatLLMsTXTWithOptions(t *testing.T) {
 	// Create test data
-	contents := []parser.ParsedContent{
+	contents := []ExtractedContent{
 		{
-			FilePath:     "section1/test.mdx",
-			Title:        "Test Document",
-			Summary:      "This is a test document",
-			Content:      "# Test Document\n\nThis is the content of the test document.",
-			RelativePath: "section1/test.mdx",
-			Section:      "section1",
+			FilePath:    "section1/test.mdx",
+			Title:       "Test Document",
+			TextContent: "# Test Document\n\nThis is the content of the test document.", // Use TextContent
+			URL:         "/section1/test",                                               // Use URL
+			Excerpt:     "This is a test document",                                      // Use Excerpt
+			Section:     "section1",
 		},
 	}
 
@@ -131,30 +129,30 @@ func TestDefaultFormatOptions(t *testing.T) {
 
 func TestGroupBySection(t *testing.T) {
 	// Create test data
-	contents := []parser.ParsedContent{
+	contents := []ExtractedContent{
 		{
-			FilePath:     "section1/test1.mdx",
-			Title:        "Test Document 1",
-			Summary:      "This is test document 1",
-			Content:      "Content 1",
-			RelativePath: "section1/test1.mdx",
-			Section:      "section1",
+			FilePath:    "section1/test1.mdx",
+			Title:       "Test Document 1",
+			TextContent: "Content 1",               // Use TextContent
+			URL:         "/section1/test1",         // Use URL
+			Excerpt:     "This is test document 1", // Use Excerpt
+			Section:     "section1",
 		},
 		{
-			FilePath:     "section1/test2.mdx",
-			Title:        "Test Document 2",
-			Summary:      "This is test document 2",
-			Content:      "Content 2",
-			RelativePath: "section1/test2.mdx",
-			Section:      "section1",
+			FilePath:    "section1/test2.mdx",
+			Title:       "Test Document 2",
+			TextContent: "Content 2",               // Use TextContent
+			URL:         "/section1/test2",         // Use URL
+			Excerpt:     "This is test document 2", // Use Excerpt
+			Section:     "section1",
 		},
 		{
-			FilePath:     "section2/test3.mdx",
-			Title:        "Test Document 3",
-			Summary:      "This is test document 3",
-			Content:      "Content 3",
-			RelativePath: "section2/test3.mdx",
-			Section:      "section2",
+			FilePath:    "section2/test3.mdx",
+			Title:       "Test Document 3",
+			TextContent: "Content 3",               // Use TextContent
+			URL:         "/section2/test3",         // Use URL
+			Excerpt:     "This is test document 3", // Use Excerpt
+			Section:     "section2",
 		},
 	}
 

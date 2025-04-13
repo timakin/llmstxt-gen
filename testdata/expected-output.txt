@@ -8,102 +8,25 @@ The documentation is organized by topic.
 
 ## Section1
 
-- [Test Document](/section1/test): This is a test document for the llmstxt-gen tool.
-- [Another Test Document](/section1/another-test): This is another test document for the llmstxt-gen tool.
+- [Main Heading for Page One](/section1/page1): This is the excerpt for page one.
 
-### Test Document
+### Main Heading for Page One
 
-# Test Document
-
-This is a test document for the llmstxt-gen tool.
-
-## Features
-
-> **Information:** This is an information component that should be converted to Markdown.
-
-Here are some features:
-
-- Feature 1
-- Feature 2
-- Feature 3
-
-![Image: Test Image](/images/test.png)
-
-## Code Example
-
-```go
-package main
-
-import "fmt"
-
-func main() {
-    fmt.Println("Hello, world!")
-}
-```
-
-## JSX Components
-
-### Card Title
-
-This is a card component that should be converted to Markdown.
-[Click Me]
-
----
-
-### Another Test Document
-
-# Another Test Document
-
-This is another test document for the llmstxt-gen tool.
-
-> This is a blockquote that should be preserved.
-
-## Lists
-
-1. First item
-2. Second item
-3. Third item
-
-## Iframe Example
-
-> **Video:** [https://example.com/video](https://example.com/video)
-
-## Custom Components
-
-This is a box inside a flexbox.
-This is a grid inside a flexbox.
-
-## JSX Expressions
-
-The value is [Expression: value].
-The result is [Expression: result + 1].
+Main Heading for Page One
+This is the first paragraph of the main content for page one.
+This is the second paragraph, containing more details.
 
 ---
 
 ## Section2
 
-- [Section 2 Document](/section2/test): This document belongs to section2.
+- [Page Two Content](/section2/page2): Excerpt for the second page.
 
-### Section 2 Document
+### Page Two Content
 
-# Section 2 Document
-
-This document belongs to section2.
-
-## Introduction
-
-This is a test document in section2 for the llmstxt-gen tool.
-
-## Details
-
-Here are some details about section2:
-
-- Detail 1
-- Detail 2
-- Detail 3
-
-## Conclusion
-
-This concludes the section2 test document.
+Page Two Content
+Here is the primary content for the second page.
+List item 1
+List item 2
 
 ---

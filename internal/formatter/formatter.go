@@ -2,11 +2,8 @@ package formatter
 
 import (
 	"fmt"
-	"path/filepath"
 	"sort"
 	"strings"
-
-	"github.com/timakin/llmstxt-gen/internal/parser"
 )
 
 // FormatOptions contains options for formatting the LLMsTXT output
@@ -15,6 +12,16 @@ type FormatOptions struct {
 	Summary          string
 	GeneralInfo      string
 	OrganizationInfo string
+}
+
+// ExtractedContent represents the extracted content from an HTML file
+type ExtractedContent struct {
+	FilePath    string // Original file path
+	URL         string // URL (from sitemap or generated from file path)
+	Title       string // Extracted title
+	TextContent string // Extracted plain text content
+	Excerpt     string // Extracted summary/excerpt
+	Section     string // Determined section based on directory structure
 }
 
 // DefaultFormatOptions returns default format options
@@ -28,12 +35,12 @@ func DefaultFormatOptions(projectName string) FormatOptions {
 }
 
 // FormatLLMsTXT formats the parsed content according to the LLMsTXT specification
-func FormatLLMsTXT(contents []parser.ParsedContent, projectName string) string {
+func FormatLLMsTXT(contents []ExtractedContent, projectName string) string {
 	return FormatLLMsTXTWithOptions(contents, DefaultFormatOptions(projectName))
 }
 
 // FormatLLMsTXTWithOptions formats the parsed content according to the LLMsTXT specification with custom options
-func FormatLLMsTXTWithOptions(contents []parser.ParsedContent, options FormatOptions) string {
+func FormatLLMsTXTWithOptions(contents []ExtractedContent, options FormatOptions) string {
 	var sb strings.Builder
 
 	// Add H1 title (required)
@@ -86,7 +93,8 @@ func FormatLLMsTXTWithOptions(contents []parser.ParsedContent, options FormatOpt
 		// Add file list for this section
 		for _, content := range sectionContents {
 			// Create a URL-friendly path
-			urlPath := strings.TrimSuffix(content.RelativePath, filepath.Ext(content.RelativePath))
+			// Use the URL field from ExtractedContent directly
+			urlPath := content.URL
 
 			// Add the file entry
 			// Ensure the URL has a single leading slash
@@ -101,14 +109,18 @@ func FormatLLMsTXTWithOptions(contents []parser.ParsedContent, options FormatOpt
 			sb.WriteString(fmt.Sprintf("- [%s](%s): %s\n",
 				content.Title,
 				formattedUrlPath,
-				content.Summary))
+				content.Excerpt)) // Use Excerpt for summary
 		}
 		sb.WriteString("\n")
 
 		// Add detailed content for this section
+		sb.WriteString("\n") // Add extra newline before detailed content
+
 		for _, content := range sectionContents {
 			sb.WriteString(fmt.Sprintf("### %s\n\n", content.Title))
-			sb.WriteString(content.Content)
+			// Add title as the first line of the content, followed by the actual content
+			sb.WriteString(content.Title + "\n")
+			sb.WriteString(content.TextContent) // Use TextContent
 			sb.WriteString("\n\n---\n\n")
 		}
 	}
@@ -117,8 +129,8 @@ func FormatLLMsTXTWithOptions(contents []parser.ParsedContent, options FormatOpt
 }
 
 // groupBySection groups the parsed content by section
-func groupBySection(contents []parser.ParsedContent) map[string][]parser.ParsedContent {
-	sectionMap := make(map[string][]parser.ParsedContent)
+func groupBySection(contents []ExtractedContent) map[string][]ExtractedContent {
+	sectionMap := make(map[string][]ExtractedContent)
 
 	for _, content := range contents {
 		section := content.Section
