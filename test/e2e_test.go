@@ -18,19 +18,18 @@ func TestE2E(t *testing.T) {
 	}
 	rootDir = filepath.Dir(rootDir) // Assuming test is run from the test directory
 
-	var binaryPath string
-	if os.Getenv("CI") == "true" {
-		// In CI, assume the binary is already built and available
-		binaryPath = filepath.Join(rootDir, "llmstxt-gen")
-	} else {
-		// Build the tool locally
-		buildCmd := exec.Command("go", "build", "-o", "llmstxt-gen", ".")
-		buildCmd.Dir = rootDir
-		buildOutput, err := buildCmd.CombinedOutput()
-		if err != nil {
-			t.Fatalf("Failed to build tool: %v\nOutput: %s", err, buildOutput)
-		}
-		binaryPath = filepath.Join(rootDir, "llmstxt-gen")
+	// Always build the tool to ensure it's available
+	binaryPath := filepath.Join(rootDir, "llmstxt-gen")
+	buildCmd := exec.Command("go", "build", "-o", binaryPath, ".")
+	buildCmd.Dir = rootDir
+	buildOutput, err := buildCmd.CombinedOutput()
+	if err != nil {
+		t.Fatalf("Failed to build tool: %v\nOutput: %s", err, buildOutput)
+	}
+
+	// Verify the binary exists
+	if _, err := os.Stat(binaryPath); os.IsNotExist(err) {
+		t.Fatalf("Binary was not created at %s", binaryPath)
 	}
 
 	// Create a temporary output file
@@ -101,19 +100,18 @@ func TestE2EWithOptions(t *testing.T) {
 	}
 	rootDir = filepath.Dir(rootDir) // Assuming test is run from the test directory
 
-	var binaryPath string
-	if os.Getenv("CI") == "true" {
-		// In CI, assume the binary is already built and available
-		binaryPath = filepath.Join(rootDir, "llmstxt-gen")
-	} else {
-		// Build the tool locally
-		buildCmd := exec.Command("go", "build", "-o", "llmstxt-gen", ".")
-		buildCmd.Dir = rootDir
-		buildOutput, err := buildCmd.CombinedOutput()
-		if err != nil {
-			t.Fatalf("Failed to build tool: %v\nOutput: %s", err, buildOutput)
-		}
-		binaryPath = filepath.Join(rootDir, "llmstxt-gen")
+	// Always build the tool to ensure it's available
+	binaryPath := filepath.Join(rootDir, "llmstxt-gen")
+	buildCmd := exec.Command("go", "build", "-o", binaryPath, ".")
+	buildCmd.Dir = rootDir
+	buildOutput, err := buildCmd.CombinedOutput()
+	if err != nil {
+		t.Fatalf("Failed to build tool: %v\nOutput: %s", err, buildOutput)
+	}
+
+	// Verify the binary exists
+	if _, err := os.Stat(binaryPath); os.IsNotExist(err) {
+		t.Fatalf("Binary was not created at %s", binaryPath)
 	}
 
 	// Create a temporary output file
@@ -167,19 +165,18 @@ func TestE2EWithSitemap(t *testing.T) {
 	}
 	rootDir = filepath.Dir(rootDir) // Assuming test is run from the test directory
 
-	var binaryPath string
-	if os.Getenv("CI") == "true" {
-		// In CI, assume the binary is already built and available
-		binaryPath = filepath.Join(rootDir, "llmstxt-gen")
-	} else {
-		// Build the tool locally
-		buildCmd := exec.Command("go", "build", "-o", "llmstxt-gen", ".")
-		buildCmd.Dir = rootDir
-		buildOutput, err := buildCmd.CombinedOutput()
-		if err != nil {
-			t.Fatalf("Failed to build tool: %v\nOutput: %s", err, buildOutput)
-		}
-		binaryPath = filepath.Join(rootDir, "llmstxt-gen")
+	// Always build the tool to ensure it's available
+	binaryPath := filepath.Join(rootDir, "llmstxt-gen")
+	buildCmd := exec.Command("go", "build", "-o", binaryPath, ".")
+	buildCmd.Dir = rootDir
+	buildOutput, err := buildCmd.CombinedOutput()
+	if err != nil {
+		t.Fatalf("Failed to build tool: %v\nOutput: %s", err, buildOutput)
+	}
+
+	// Verify the binary exists
+	if _, err := os.Stat(binaryPath); os.IsNotExist(err) {
+		t.Fatalf("Binary was not created at %s", binaryPath)
 	}
 
 	// Create a temporary output file
